@@ -6,6 +6,6 @@
     "description": "Play DOOM (1993) directly from any Company record. Demo of HubSpot UI Extensions running WebAssembly DOSBox.",
     "location": "crm.record.tab",
     "entrypoint": "/app/cards/DoomCard.jsx",
-    "objectTypes": ["COMPANY", "DEAL"]
+    "objectTypes": ["COMPANY"]
   }
 }
