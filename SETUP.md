@@ -103,7 +103,7 @@ The CLI will print a URL after a successful deploy. Open it and click **Install 
 ## Troubleshooting
 
 **"App Pages not available" or the app type is not recognized**
-App Pages require Sales Hub Enterprise or Service Hub Enterprise. Confirm your portal has an active Enterprise subscription.
+App Pages require any Enterprise Hub subscription (Sales, Service, Marketing, Operations, or Content), or a free Developer Test Account. Confirm your account meets one of these requirements.
 
 **Iframe is blank or shows a loading spinner that never resolves**
 - Check the browser console for CSP or sandbox errors

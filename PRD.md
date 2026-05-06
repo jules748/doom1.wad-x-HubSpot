@@ -669,7 +669,7 @@ Public-facing project doc. Replace the GitHub default README. Should include:
 - ASCII architecture diagram (3 layers as in section 3)
 - Repository layout section
 - Quick start (link to SETUP.md)
-- Requirements (Sales/Service Hub Enterprise, HubSpot dev account, CLI, Node 18+)
+- Requirements (any Enterprise Hub subscription or free Developer Test Account, HubSpot dev account, CLI, Node 18+)
 - Legal note about DOOM/js-dos licenses
 - Author credit (Jules Bellon, klakss.com, MIT license)
 
@@ -722,7 +722,7 @@ The status checklist should track these items:
 - **File naming**: `*-hsmeta.json` for config files (new in 2026.03+).
 - **App Page registration**: in `app-hsmeta.json` under `extensions.crm.appPages[]`. The page itself is declared in its own `*-hsmeta.json` with `type: "app-page"` and `isHomePage: true`.
 - **Entry point**: the `entrypoint` field in the extension config is a path relative to `src/app/extensions/`.
-- **Enterprise feature**: App Pages require Sales Hub Enterprise or Service Hub Enterprise on the target portal.
+- **Enterprise feature**: App Pages require any Enterprise Hub subscription (Sales, Service, Marketing, Operations, or Content) on the target portal, or a free Developer Test Account.
 
 ### Static loader
 

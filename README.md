@@ -76,7 +76,7 @@ High-level:
 
 ## Requirements
 
-- HubSpot portal with **Sales Hub Enterprise** or **Service Hub Enterprise** (App Pages are an Enterprise feature)
+- HubSpot account with any Enterprise Hub subscription (Sales, Service, Marketing, Operations, or Content) — OR a free Developer Test Account. UI Extensions and App Pages are Enterprise features for private apps; Developer Test Accounts include these features for free.
 - HubSpot developer account (free) linked to the portal
 - HubSpot CLI: `npm install -g @hubspot/cli@latest`
 - Node.js >= 18
