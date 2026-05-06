@@ -19,6 +19,9 @@
     "crm": {
       "appPages": [
         { "file": "extensions/doom-page-hsmeta.json" }
+      ],
+      "cards": [
+        { "file": "extensions/doom-card-hsmeta.json" }
       ]
     }
   },

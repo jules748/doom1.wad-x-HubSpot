@@ -1,0 +1,13 @@
+{
+  "type": "card",
+  "uid": "doom-card",
+  "config": {
+    "name": "DOOM",
+    "description": "Play DOOM directly from this Company record. For demo purposes.",
+    "entrypoint": "DoomCard.jsx",
+    "location": "crm.record.tab",
+    "objectTypes": [
+      { "name": "companies" }
+    ]
+  }
+}

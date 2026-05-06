@@ -3,9 +3,11 @@
 > "It runs DOOM" - the universal benchmark for any programmable surface.
 > If HubSpot UI Extensions can run DOOM, they can run anything your team actually needs.
 
-A proof-of-concept that runs the original **DOOM (1993)** as a native **App Page** inside HubSpot CRM, using HubSpot UI Extensions (Developer Platform 2026.03), js-dos v8 (WebAssembly DOSBox), and GitHub Pages.
+A proof-of-concept that runs the original **DOOM (1993)** inside HubSpot CRM via two entry points:
+- A native **App Page** (accessible from the Marketplace icon in the left nav)
+- A **CRM Card on Company records** (middle column tab, visible on any Company)
 
-Built for LinkedIn content and a HubSpot CSM team demo. Not a production tool.
+Built with HubSpot UI Extensions (Developer Platform 2026.03), js-dos v8 (WebAssembly DOSBox), and GitHub Pages. For LinkedIn content and a HubSpot CSM team demo. Not a production tool.
 
 ---
 
@@ -47,6 +49,8 @@ HubSpot CRM (app.hubspot.com)
 |       +-- extensions/
 |           +-- doom-page-hsmeta.json
 |           +-- DoomPage.jsx
+|           +-- doom-card-hsmeta.json
+|           +-- DoomCard.jsx
 |           +-- package.json
 +-- scripts/
 |   +-- build-bundle.md          How to build doom.jsdos

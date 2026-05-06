@@ -52,6 +52,8 @@ HubSpot CRM (app.hubspot.com)
 |       +-- extensions/
 |           +-- doom-page-hsmeta.json   type: "app-page", isHomePage: true
 |           +-- DoomPage.jsx            React component - the App Page UI
+|           +-- doom-card-hsmeta.json   type: "card", location: crm.record.tab, companies
+|           +-- DoomCard.jsx            React component - the CRM Card UI (Company records)
 |           +-- package.json            @hubspot/ui-extensions + react deps
 +-- scripts/
     +-- build-bundle.md              Manual instructions for building doom.jsdos
@@ -65,6 +67,7 @@ HubSpot CRM (app.hubspot.com)
 - **SDK package**: `@hubspot/ui-extensions` (unified package). Do NOT use `@hubspot/ui-extensions-react` (deprecated).
 - **Config files**: named `*-hsmeta.json` (new naming convention in 2026.03+).
 - **App Page registration**: declared in `app-hsmeta.json` under `extensions.crm.appPages[]`, with the page detail in its own `*-hsmeta.json` with `type: "app-page"`.
+- **CRM Card registration**: declared in `app-hsmeta.json` under `extensions.crm.cards[]`, with the card detail in its own `*-hsmeta.json` with `type: "card"` and `location: "crm.record.tab"`.
 - **No build step for docs/**: `index.html` is plain HTML/CSS/JS. js-dos loads from CDN. No webpack, no bundler.
 - **No external HTTP calls from DoomPage.jsx**: all game logic happens inside the iframe on GitHub Pages.
 - **ASCII only in code and strings**: avoids Windows PowerShell encoding issues.
@@ -100,7 +103,7 @@ Add a `<select>` or radio group in `DoomPage.jsx` before the Iframe renders. Pas
 js-dos v8 exposes a `ci` (command interface) on the Dos instance. After boot, call `dosInstance.layers` or listen to frame events. Display stats in a `<div>` overlay in `index.html`.
 
 **Port to a Company record sidebar**
-Create a new `*-hsmeta.json` with `type: "crm-card"` and `objectTypes: [{"name": "companies"}]`. Register it in `app-hsmeta.json` under `extensions.crm.cards[]`. The Iframe approach is identical.
+Done - see `DoomCard.jsx` and `doom-card-hsmeta.json`. The card uses `location: "crm.record.tab"` (middle column) and targets `objectTypes: [{"name": "companies"}]`.
 
 **Swap to Freedoom (open-source replacement)**
 Replace `DOOM1.WAD` with `freedoom1.wad` from the Freedoom project (https://freedoom.github.io/). Rebuild the bundle. No legal concerns - Freedoom is BSD licensed.
@@ -120,8 +123,8 @@ Replace `DOOM1.WAD` with `freedoom1.wad` from the Freedoom project (https://free
 
 ## Status checklist
 
-- [ ] Project scaffolded
-- [ ] doom.jsdos built and placed in docs/
+- [x] Project scaffolded
+- [x] doom.jsdos built and placed in docs/
 - [ ] GitHub Pages enabled
 - [ ] First push triggers successful Pages deploy
 - [ ] DOOM playable at GitHub Pages URL
@@ -130,4 +133,6 @@ Replace `DOOM1.WAD` with `freedoom1.wad` from the Freedoom project (https://free
 - [ ] First hs project upload succeeds
 - [ ] App installed on portal 145045793
 - [ ] DOOM playable inside HubSpot via Marketplace icon
+- [ ] CRM Card visible on Company records
+- [ ] DOOM playable from a Company record
 - [ ] Screenshot/video recorded for LinkedIn
