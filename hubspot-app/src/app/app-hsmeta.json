@@ -18,7 +18,7 @@
     "permittedUrls": {
       "fetch": [],
       "iframe": ["https://jules748.github.io"],
-      "img": []
+      "img": ["https://upload.wikimedia.org"]
     },
     "support": {
       "supportEmail": "jules@klakss.com",
