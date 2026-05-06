@@ -6,9 +6,9 @@ import {
   Heading,
   Button,
   Tile,
-  Iframe,
   hubspot,
 } from "@hubspot/ui-extensions";
+import { Iframe } from "@hubspot/ui-extensions/experimental";
 
 const DOOM_LOADER_URL = "https://jules748.github.io/doom1.wad-x-HubSpot/";
 
@@ -70,16 +70,7 @@ const DoomCard = ({ fetchCrmObjectProperties }) => {
             <Box>
               <Iframe
                 src={DOOM_LOADER_URL}
-                height={500}
-                width="100%"
-                title="DOOM"
-                sandbox={[
-                  "allow-scripts",
-                  "allow-same-origin",
-                  "allow-pointer-lock",
-                  "allow-popups",
-                ]}
-                allow="autoplay; gamepad; fullscreen"
+                height="lg"
               />
             </Box>
           </Flex>

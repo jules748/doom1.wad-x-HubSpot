@@ -7,9 +7,9 @@ import {
   Button,
   Tile,
   Divider,
-  Iframe,
   hubspot,
 } from "@hubspot/ui-extensions";
+import { Iframe } from "@hubspot/ui-extensions/experimental";
 import { createPageRouter, PageRoutes } from "@hubspot/ui-extensions/pages";
 
 const DOOM_LOADER_URL = "https://jules748.github.io/doom1.wad-x-HubSpot/";
@@ -65,16 +65,7 @@ const DoomHomePage = () => {
             <Box>
               <Iframe
                 src={DOOM_LOADER_URL}
-                height={600}
-                width="100%"
-                title="DOOM"
-                sandbox={[
-                  "allow-scripts",
-                  "allow-same-origin",
-                  "allow-pointer-lock",
-                  "allow-popups",
-                ]}
-                allow="autoplay; gamepad; fullscreen"
+                height="lg"
               />
             </Box>
           </Flex>
