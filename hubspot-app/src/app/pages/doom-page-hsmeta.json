@@ -1,7 +1,0 @@
-{
-  "uid": "doom_pages",
-  "type": "page",
-  "config": {
-    "entrypoint": "/app/pages/DoomPage.jsx"
-  }
-}
