@@ -1,0 +1,26 @@
+{
+  "name": "DOOM in HubSpot",
+  "description": "An App Page that runs the original DOOM (1993) inside HubSpot via UI Extensions and js-dos.",
+  "uid": "doom-app",
+  "type": "app",
+  "auth": {
+    "type": "static",
+    "redirectUrls": [],
+    "requiredScopes": [],
+    "optionalScopes": [],
+    "conditionallyRequiredScopes": []
+  },
+  "support": {
+    "supportEmail": "jules@klakss.com",
+    "documentationUrl": "https://github.com/jules748/doom1.wad-x-HubSpot",
+    "supportUrl": "https://github.com/jules748/doom1.wad-x-HubSpot/issues"
+  },
+  "extensions": {
+    "crm": {
+      "appPages": [
+        { "file": "extensions/doom-page-hsmeta.json" }
+      ]
+    }
+  },
+  "distribution": "private"
+}

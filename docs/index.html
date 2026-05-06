@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>DOOM in HubSpot</title>
+
+  <link rel="stylesheet" href="https://v8.js-dos.com/latest/js-dos.css" />
+  <script src="https://v8.js-dos.com/latest/js-dos.js"></script>
+
+  <style>
+    :root {
+      --hubspot-orange: #ff7a59;
+      --doom-red: #cc0000;
+      --bg: #1a1a1a;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    html, body {
+      height: 100%; width: 100%;
+      background: var(--bg);
+      color: #fff;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Inter, sans-serif;
+      overflow: hidden;
+    }
+    #start-screen {
+      position: fixed; inset: 0;
+      display: flex; flex-direction: column;
+      align-items: center; justify-content: center;
+      background: var(--bg);
+      cursor: pointer;
+      z-index: 100;
+      transition: opacity 0.3s ease;
+    }
+    #start-screen h1 {
+      font-size: clamp(2rem, 6vw, 4rem);
+      letter-spacing: 0.1em;
+      color: var(--doom-red);
+      text-shadow: 0 0 20px rgba(204, 0, 0, 0.5);
+      margin-bottom: 1rem;
+    }
+    #start-screen p {
+      font-size: 1rem;
+      color: #ccc;
+      margin-bottom: 2rem;
+    }
+    #start-button {
+      background: var(--hubspot-orange);
+      color: #fff;
+      border: none;
+      padding: 1rem 2.5rem;
+      font-size: 1.1rem;
+      font-weight: 600;
+      border-radius: 6px;
+      cursor: pointer;
+      transition: transform 0.15s ease, box-shadow 0.15s ease;
+    }
+    #start-button:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 20px rgba(255, 122, 89, 0.3);
+    }
+    #start-screen.hidden { opacity: 0; pointer-events: none; }
+    #dos { width: 100%; height: 100%; }
+    .footer-credit {
+      position: fixed; bottom: 8px; right: 12px;
+      font-size: 11px; color: #666;
+      z-index: 50; pointer-events: none;
+    }
+    .footer-credit a { color: #888; pointer-events: auto; }
+    #error-screen {
+      display: none;
+      padding: 2rem;
+      max-width: 600px;
+      margin: 4rem auto;
+      background: #2a2a2a;
+      border-left: 4px solid var(--doom-red);
+      border-radius: 4px;
+    }
+    #error-screen.visible { display: block; }
+    #error-screen h2 { color: var(--doom-red); margin-bottom: 1rem; }
+    #error-screen code {
+      background: #000;
+      padding: 2px 6px;
+      border-radius: 3px;
+      font-family: "Courier New", monospace;
+    }
+  </style>
+</head>
+<body>
+  <div id="start-screen" role="button" tabindex="0">
+    <h1>DOOM</h1>
+    <p>Running inside HubSpot via UI Extensions</p>
+    <button id="start-button">Click to Play</button>
+  </div>
+
+  <div id="dos"></div>
+
+  <div id="error-screen">
+    <h2>Bundle not found</h2>
+    <p>Drop your <code>doom.jsdos</code> bundle in the <code>/docs</code> folder and redeploy.</p>
+    <p style="margin-top: 1rem; font-size: 0.9rem; color: #999;">
+      See <code>scripts/build-bundle.md</code> in the repo for instructions.
+    </p>
+  </div>
+
+  <div class="footer-credit">
+    Powered by <a href="https://js-dos.com" target="_blank" rel="noopener">js-dos</a>
+  </div>
+
+  <script>
+    const params = new URLSearchParams(window.location.search);
+    const BUNDLE_URL = params.get("bundle") || "./doom.jsdos";
+
+    const startScreen = document.getElementById("start-screen");
+    const errorScreen = document.getElementById("error-screen");
+    const dosContainer = document.getElementById("dos");
+
+    let dosInstance = null;
+
+    async function bootDoom() {
+      startScreen.classList.add("hidden");
+      try {
+        const head = await fetch(BUNDLE_URL, { method: "HEAD" });
+        if (!head.ok) throw new Error("Bundle returned " + head.status);
+
+        dosInstance = Dos(dosContainer, {
+          url: BUNDLE_URL,
+          theme: "dark",
+          autoStart: true,
+          backend: "dosboxX",
+        });
+
+        setTimeout(function () { startScreen.remove(); }, 400);
+      } catch (err) {
+        console.error("[DoomLoader] Failed to boot:", err);
+        startScreen.remove();
+        errorScreen.classList.add("visible");
+      }
+    }
+
+    startScreen.addEventListener("click", bootDoom);
+    startScreen.addEventListener("keydown", function (e) {
+      if (e.key === "Enter" || e.key === " ") {
+        e.preventDefault();
+        bootDoom();
+      }
+    });
+
+    window.addEventListener("message", function (event) {
+      if (!dosInstance) return;
+      const type = event.data && event.data.type;
+      switch (type) {
+        case "doom:pause": dosInstance.setPause && dosInstance.setPause(true); break;
+        case "doom:resume": dosInstance.setPause && dosInstance.setPause(false); break;
+        case "doom:mute": dosInstance.setVolume && dosInstance.setVolume(0); break;
+        case "doom:unmute": dosInstance.setVolume && dosInstance.setVolume(1); break;
+      }
+    });
+
+    if (window.parent) {
+      window.parent.postMessage({ type: "doom:ready" }, "*");
+    }
+  </script>
+</body>
+</html>
