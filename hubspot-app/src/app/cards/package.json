@@ -1,7 +1,7 @@
 {
-  "name": "doom-page-extension",
+  "name": "doom-card",
   "version": "1.0.0",
-  "description": "DOOM running inside a HubSpot App Page",
+  "description": "DOOM CRM card for Company records",
   "private": true,
   "dependencies": {
     "@hubspot/ui-extensions": "latest",

@@ -6,32 +6,17 @@ import {
   Heading,
   Button,
   Tile,
+  Divider,
   Iframe,
   hubspot,
 } from "@hubspot/ui-extensions";
+import { createPageRouter, PageRoutes } from "@hubspot/ui-extensions/pages";
 
 const DOOM_LOADER_URL = "https://jules748.github.io/doom1.wad-x-HubSpot/";
 
-hubspot.extend(({ context, actions }) => (
-  <DoomCard context={context} fetchCrmObjectProperties={actions.fetchCrmObjectProperties} />
-));
-
-const DoomCard = ({ context, fetchCrmObjectProperties }) => {
+const DoomHomePage = () => {
   const [isPlaying, setIsPlaying] = useState(false);
   const [iframeReady, setIframeReady] = useState(false);
-  const [companyName, setCompanyName] = useState(null);
-
-  useEffect(() => {
-    if (fetchCrmObjectProperties) {
-      fetchCrmObjectProperties(["name"])
-        .then((props) => {
-          if (props && props.name) {
-            setCompanyName(props.name);
-          }
-        })
-        .catch(() => {});
-    }
-  }, []);
 
   useEffect(() => {
     const handleMessage = (event) => {
@@ -50,9 +35,8 @@ const DoomCard = ({ context, fetchCrmObjectProperties }) => {
           <Box>
             <Heading>DOOM</Heading>
             <Text variant="microcopy">
-              {companyName
-                ? "Playing DOOM on " + companyName + "'s record"
-                : "Demo: HubSpot UI Extensions can run anything (even WebAssembly DOSBox)"}
+              The original 1993 first-person shooter, running inside HubSpot
+              via UI Extensions + js-dos (WebAssembly DOSBox).
             </Text>
           </Box>
           <Flex direction="row" gap="sm">
@@ -81,7 +65,7 @@ const DoomCard = ({ context, fetchCrmObjectProperties }) => {
             <Box>
               <Iframe
                 src={DOOM_LOADER_URL}
-                height={500}
+                height={600}
                 width="100%"
                 title="DOOM"
                 sandbox={[
@@ -96,6 +80,47 @@ const DoomCard = ({ context, fetchCrmObjectProperties }) => {
           </Flex>
         </Tile>
       )}
+
+      {!isPlaying && (
+        <Tile>
+          <Flex direction="column" gap="md">
+            <Heading>About this app</Heading>
+            <Text>
+              This is a proof-of-concept demonstrating what's possible with
+              HubSpot's UI Extensions platform. The full DOOM engine runs in
+              your browser as WebAssembly, embedded in an Iframe component
+              within a native HubSpot App Page.
+            </Text>
+            <Divider />
+            <Heading>Stack</Heading>
+            <Text>- HubSpot UI Extensions (Developer Platform 2026.03)</Text>
+            <Text>- React + @hubspot/ui-extensions SDK</Text>
+            <Text>- js-dos v8 (WebAssembly DOSBox)</Text>
+            <Text>- DOOM shareware (id Software, 1993)</Text>
+            <Text>- Hosted on GitHub Pages</Text>
+            <Divider />
+            <Heading>Why?</Heading>
+            <Text>
+              Because "It runs DOOM" is the universal benchmark for any
+              programmable surface. If HubSpot UI Extensions can run DOOM,
+              they can run anything your team actually needs.
+            </Text>
+            <Box>
+              <Text variant="microcopy">
+                Built by Jules Bellon - klakss.com - Portal 145045793
+              </Text>
+            </Box>
+          </Flex>
+        </Tile>
+      )}
     </Flex>
   );
 };
+
+const PageRouter = createPageRouter(
+  <PageRoutes>
+    <PageRoutes.IndexRoute component={DoomHomePage} />
+  </PageRoutes>,
+);
+
+hubspot.extend(() => <PageRouter />);
