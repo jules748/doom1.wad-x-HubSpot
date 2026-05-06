@@ -9,7 +9,7 @@
 
 Build a working proof-of-concept that runs the original **DOOM (1993)** as a native **App Page** inside HubSpot, using HubSpot UI Extensions (Developer Platform 2026.03), `js-dos` v8 (WebAssembly DOSBox), and GitHub Pages.
 
-This is a "look what's possible" demo for LinkedIn content and a HubSpot CSM team meeting. Not a production tool. The success criterion is: **launching the app from HubSpot's Marketplace icon plays a fully working DOOM in the browser, inside HubSpot's chrome.**
+This is a "look what's possible" proof-of-concept. Not a production tool. The success criterion is: **launching the app from HubSpot's Marketplace icon plays a fully working DOOM in the browser, inside HubSpot's chrome.**
 
 ---
 
@@ -18,7 +18,7 @@ This is a "look what's possible" demo for LinkedIn content and a HubSpot CSM tea
 - **Owner**: Jules Bellon (jules@klakss.com), HubSpot Partner, founder of Klakss
 - **GitHub repo**: <https://github.com/jules748/doom1.wad-x-HubSpot> (public, already created, currently empty except for default README)
 - **GitHub Pages URL** (target): <https://jules748.github.io/doom1.wad-x-HubSpot/>
-- **HubSpot portal**: `145045793` (Sales Hub Enterprise, EU/Paris/EUR)
+- **HubSpot portal**: `<YOUR_PORTAL_ID>`
 - **Local dev environment**: Windows + VS Code + PowerShell + Claude Code
 - **Working directory**: `C:\Users\jbell\doom1.wad-x-HubSpot`
 
@@ -45,7 +45,7 @@ HubSpot CRM (app.hubspot.com)
 | Layer | Source path | Deploys to | Via |
 |-------|-------------|-----------|-----|
 | Static loader | `docs/` | jules748.github.io | GitHub Actions (auto on push) |
-| HubSpot extension | `hubspot-app/` | HubSpot portal 145045793 | `hs project upload` (manual) |
+| HubSpot extension | `hubspot-app/` | Your HubSpot portal | `hs project upload` (manual) |
 | DOOM bundle | `docs/doom.jsdos` | Same as static loader | Built locally via `dos.zone/studio`, committed to git |
 
 ---
@@ -634,7 +634,7 @@ After ~1 minute, visit <https://jules748.github.io/doom1.wad-x-HubSpot/>. The "C
 npm install -g @hubspot/cli@latest
 cd hubspot-app
 hs init
-# Browser opens - log in - select developer account containing portal 145045793
+# Browser opens - log in - select your developer account
 ```
 
 ### 6.5 Install extension dependencies
@@ -649,7 +649,7 @@ cd ../../../..
 
 ```powershell
 cd hubspot-app
-hs project upload --account=145045793
+hs project upload --account=<YOUR_PORTAL_ID>
 ```
 
 CLI prints a URL after deploy. Open it, click "Install app".
@@ -673,7 +673,7 @@ Public-facing project doc. Replace the GitHub default README. Should include:
 - Legal note about DOOM/js-dos licenses
 - Author credit (Jules Bellon, klakss.com, MIT license)
 
-Keep it punchy. This is what people see when the LinkedIn post drives traffic to the repo.
+Keep it punchy.
 
 ### 7.2 `SETUP.md`
 
@@ -704,12 +704,12 @@ The status checklist should track these items:
 - [ ] GitHub Pages enabled
 - [ ] First push triggers successful Pages deploy
 - [ ] DOOM playable at GitHub Pages URL
-- [ ] HubSpot CLI authenticated to portal 145045793
+- [ ] HubSpot CLI authenticated to your portal
 - [ ] Extension dependencies installed
 - [ ] First hs project upload succeeds
-- [ ] App installed on portal 145045793
+- [ ] App installed on your portal
 - [ ] DOOM playable inside HubSpot via Marketplace icon
-- [ ] Screenshot/video recorded for LinkedIn
+- [ ] Screenshot/video recorded
 
 ---
 
@@ -722,7 +722,7 @@ The status checklist should track these items:
 - **File naming**: `*-hsmeta.json` for config files (new in 2026.03+).
 - **App Page registration**: in `app-hsmeta.json` under `extensions.crm.appPages[]`. The page itself is declared in its own `*-hsmeta.json` with `type: "app-page"` and `isHomePage: true`.
 - **Entry point**: the `entrypoint` field in the extension config is a path relative to `src/app/extensions/`.
-- **Enterprise feature**: App Pages require Sales Hub Enterprise or Service Hub Enterprise on the target portal. Portal 145045793 has this.
+- **Enterprise feature**: App Pages require Sales Hub Enterprise or Service Hub Enterprise on the target portal.
 
 ### Static loader
 
@@ -753,7 +753,7 @@ The project is "done" when ALL of these are true:
 1. `git status` shows clean working tree on `main` branch
 2. GitHub Pages deploy is green (check Actions tab)
 3. `https://jules748.github.io/doom1.wad-x-HubSpot/` loads, shows "Click to Play", and after clicking, DOOM boots and is playable with keyboard
-4. `hs project upload --account=145045793` succeeds with no errors
+4. `hs project upload --account=<YOUR_PORTAL_ID>` succeeds with no errors
 5. The app appears in HubSpot under Marketplace icon -> Recently visited apps
 6. Clicking "Launch DOOM" inside the App Page loads the iframe and DOOM is playable inside HubSpot
 7. README.md, SETUP.md, CLAUDE.md, LICENSE all exist and are well-formed

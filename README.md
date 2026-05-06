@@ -7,7 +7,7 @@ A proof-of-concept that runs the original **DOOM (1993)** inside HubSpot CRM via
 - A native **App Page** (accessible from the Marketplace icon in the left nav)
 - A **CRM Card on Company records** (middle column tab, visible on any Company)
 
-Built with HubSpot UI Extensions (Developer Platform 2026.03), js-dos v8 (WebAssembly DOSBox), and GitHub Pages. For LinkedIn content and a HubSpot CSM team demo. Not a production tool.
+Built with HubSpot UI Extensions (Developer Platform 2026.03), js-dos v8 (WebAssembly DOSBox), and GitHub Pages. A proof-of-concept demonstration. Not a production tool.
 
 ---
 
@@ -30,7 +30,7 @@ HubSpot CRM (app.hubspot.com)
 | Layer | Source | Deploys to | How |
 |-------|--------|-----------|-----|
 | Static loader | `docs/` | GitHub Pages | GitHub Actions on push |
-| HubSpot extension | `hubspot-app/` | HubSpot portal 145045793 | `hs project upload` |
+| HubSpot extension | `hubspot-app/` | Your HubSpot portal | `hs project upload` |
 | DOOM bundle | `docs/doom.jsdos` | GitHub Pages | Built locally, committed |
 
 ---
@@ -69,7 +69,7 @@ High-level:
 2. Enable GitHub Pages (repo Settings -> Pages -> Source: GitHub Actions)
 3. Push to `main` - Actions deploys automatically
 4. `npm install -g @hubspot/cli@latest && cd hubspot-app && hs init`
-5. `cd src/app/extensions && npm install && cd ../../.. && hs project upload --account=145045793`
+5. `cd src/app/extensions && npm install && cd ../../.. && hs project upload --account=<YOUR_PORTAL_ID>`
 6. Install the app in HubSpot, open via Marketplace icon, click "Launch DOOM"
 
 ---

@@ -60,7 +60,7 @@ cd hubspot-app
 hs init
 ```
 
-A browser window will open. Log in with your HubSpot credentials and select the developer account that contains portal `145045793`.
+A browser window will open. Log in with your HubSpot credentials and select the developer account that contains your portal.
 
 This creates a `hubspot.config.yml` file locally (it is gitignored - do not commit it).
 
@@ -80,10 +80,10 @@ Upload the project to HubSpot:
 
 ```powershell
 cd hubspot-app
-hs project upload --account=145045793
+hs project upload --account=<YOUR_PORTAL_ID>
 ```
 
-The CLI will print a URL after a successful deploy. Open it and click **Install app** to install it on portal `145045793`.
+The CLI will print a URL after a successful deploy. Open it and click **Install app** to install it on your portal.
 
 ---
 
@@ -103,7 +103,7 @@ The CLI will print a URL after a successful deploy. Open it and click **Install 
 ## Troubleshooting
 
 **"App Pages not available" or the app type is not recognized**
-App Pages require Sales Hub Enterprise or Service Hub Enterprise. Confirm portal `145045793` has an active Enterprise subscription.
+App Pages require Sales Hub Enterprise or Service Hub Enterprise. Confirm your portal has an active Enterprise subscription.
 
 **Iframe is blank or shows a loading spinner that never resolves**
 - Check the browser console for CSP or sandbox errors

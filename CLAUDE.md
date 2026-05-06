@@ -6,9 +6,9 @@ This file gives Claude Code the operational context needed to work on this proje
 
 ## Project overview
 
-This repo runs the original DOOM (1993) as a native App Page inside HubSpot CRM. It uses HubSpot UI Extensions (Developer Platform 2026.03) to render a React component containing an Iframe that points to a static GitHub Pages site. The GitHub Pages site uses js-dos v8 (WebAssembly DOSBox) to load and run a `doom.jsdos` bundle containing the DOOM shareware files. The whole stack is a proof-of-concept demo for LinkedIn and a HubSpot CSM team meeting.
+This repo runs the original DOOM (1993) as a native App Page inside HubSpot CRM. It uses HubSpot UI Extensions (Developer Platform 2026.03) to render a React component containing an Iframe that points to a static GitHub Pages site. The GitHub Pages site uses js-dos v8 (WebAssembly DOSBox) to load and run a `doom.jsdos` bundle containing the DOOM shareware files. The whole stack is a proof-of-concept demonstration.
 
-Owner: Jules Bellon (jules@klakss.com), HubSpot Partner, Klakss. Portal: 145045793 (Sales Hub Enterprise, EU/Paris).
+Owner: Jules Bellon (jules@klakss.com), HubSpot Partner, Klakss. Portal: <YOUR_PORTAL_ID>.
 
 ---
 
@@ -85,7 +85,7 @@ cd hubspot-app/src/app/extensions && npm install && cd ../../../..
 # 3. Edit DoomPage.jsx or index.html
 # 4. Test GitHub Pages locally by opening docs/index.html in a browser
 # 5. Upload to HubSpot
-cd hubspot-app && hs project upload --account=145045793
+cd hubspot-app && hs project upload --account=<YOUR_PORTAL_ID>
 # 6. Commit and push (triggers GitHub Pages redeploy)
 git add . && git commit -m "..." && git push origin main
 ```
@@ -128,11 +128,11 @@ Replace `DOOM1.WAD` with `freedoom1.wad` from the Freedoom project (https://free
 - [ ] GitHub Pages enabled
 - [ ] First push triggers successful Pages deploy
 - [ ] DOOM playable at GitHub Pages URL
-- [ ] HubSpot CLI authenticated to portal 145045793
+- [ ] HubSpot CLI authenticated to your portal
 - [ ] Extension dependencies installed
 - [ ] First hs project upload succeeds
-- [ ] App installed on portal 145045793
+- [ ] App installed on your portal
 - [ ] DOOM playable inside HubSpot via Marketplace icon
 - [ ] CRM Card visible on Company records
 - [ ] DOOM playable from a Company record
-- [ ] Screenshot/video recorded for LinkedIn
+- [ ] Screenshot/video recorded
